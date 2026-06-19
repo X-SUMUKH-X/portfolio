@@ -1,0 +1,802 @@
+:root {
+    --bg-color-light: #ffffff;
+    --text-color-light: #171717;
+    --text-muted-light: #737373;
+    --card-bg-light: rgba(245, 245, 245, 0.7);
+    --border-color-light: rgba(0, 0, 0, 0.08);
+
+    --bg-color-dark: #0a0a0a;
+    --text-color-dark: #fafafa;
+    --text-muted-dark: #a3a3a3;
+    --card-bg-dark: rgba(23, 23, 23, 0.65);
+    --border-color-dark: rgba(255, 255, 255, 0.08);
+
+    --accent-color: #FF6A3D; /* Volatile Orange */
+    --accent-rgb: 255, 106, 61;
+    --secondary-color: #00F2FE; /* Electric Cyan */
+    --secondary-rgb: 0, 242, 254;
+
+    --font-mono: 'Space Mono', monospace;
+    --font-sans: 'Inter', sans-serif;
+    --font-head: 'Outfit', sans-serif;
+}
+
+/* Theme Application */
+html.light {
+    --bg: var(--bg-color-light);
+    --text: var(--text-color-light);
+    --text-muted: var(--text-muted-light);
+    --card-bg: var(--card-bg-light);
+    --border: var(--border-color-light);
+}
+
+html.dark {
+    --bg: var(--bg-color-dark);
+    --text: var(--text-color-dark);
+    --text-muted: var(--text-muted-dark);
+    --card-bg: var(--card-bg-dark);
+    --border: var(--border-color-dark);
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.6;
+    antialiased: true;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* Page Container */
+.container {
+    max-w: 640px; /* max-w-xl is 576px or 640px. Let's make it 640px */
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Main Layout Grid */
+main {
+    padding-top: 100px;
+    padding-bottom: 120px;
+}
+
+/* Spacing and Sections */
+section {
+    margin-bottom: 64px;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-sans);
+    font-weight: 500;
+}
+
+h2 {
+    color: var(--text);
+    margin-bottom: 16px;
+}
+
+.text-muted-color {
+    color: var(--text-muted);
+}
+
+a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--border);
+    text-underline-offset: 4px;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+a:hover {
+    color: var(--text);
+    text-decoration-color: var(--text);
+}
+
+/* Theme Toggle styles */
+.theme-toggle-container {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+}
+
+.theme-toggle-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    padding: 2px;
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+    width: 28px;
+    height: 28px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-bar:hover {
+    width: 86px;
+}
+
+.theme-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.theme-btn:hover, .theme-btn.active {
+    color: var(--text);
+}
+
+.theme-btn.active {
+    background-color: var(--border);
+}
+
+.theme-toggle-bar:not(:hover) .theme-btn:not(.active) {
+    display: none;
+}
+
+/* Signature Blueprint Ticks/Crosshairs */
+.group-item {
+    position: relative;
+    padding: 12px 0;
+}
+
+.corner-tick {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.corner-tick::before, .corner-tick::after {
+    content: '';
+    position: absolute;
+    background-color: var(--text-muted);
+}
+
+.corner-tick-tl {
+    top: -5px;
+    left: -5px;
+}
+.corner-tick-tl::before {
+    top: 5px;
+    left: 0;
+    width: 10px;
+    height: 0.5px;
+}
+.corner-tick-tl::after {
+    top: 0;
+    left: 5px;
+    width: 0.5px;
+    height: 10px;
+}
+
+.corner-tick-br {
+    bottom: -5px;
+    right: -5px;
+}
+.corner-tick-br::before {
+    bottom: 5px;
+    right: 0;
+    width: 10px;
+    height: 0.5px;
+}
+.corner-tick-br::after {
+    bottom: 0;
+    right: 5px;
+    width: 0.5px;
+    height: 10px;
+}
+
+.group-item:hover .corner-tick {
+    opacity: 0.6;
+}
+
+/* Collapsible Experience Logs */
+.exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    list-style: none;
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exp-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.exp-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    transition: color 0.2s ease;
+}
+
+.exp-toggle-btn:hover {
+    color: var(--text);
+}
+
+.exp-chevron {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.exp-chevron.rotated {
+    transform: rotate(90deg);
+}
+
+.exp-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.exp-body.open {
+    grid-template-rows: 1fr;
+}
+
+.exp-content {
+    overflow: hidden;
+    color: var(--text-muted);
+    font-size: 13px;
+    padding-top: 10px;
+}
+
+.exp-bullets {
+    margin-left: 16px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Project Cards / Bento Grid */
+.projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.project-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background-color: var(--card-bg);
+    backdrop-filter: blur(12px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.2s ease;
+}
+
+.project-card:hover {
+    border-color: var(--text-muted);
+}
+
+.project-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.project-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.project-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background-color: var(--border);
+    color: var(--text-muted);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.project-tag.accent-tag {
+    background-color: rgba(var(--accent-rgb), 0.1);
+    color: var(--accent-color);
+}
+
+.project-tag.cyan-tag {
+    background-color: rgba(var(--secondary-rgb), 0.15);
+    color: var(--secondary-color);
+}
+
+.project-stats {
+    display: flex;
+    gap: 16px;
+    margin-top: 4px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-val {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.stat-lbl {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Interactive Slack Simulator styles */
+.slack-simulator {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background-color: var(--card-bg);
+    overflow: hidden;
+    margin-top: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.slack-header {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.slack-window-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.slack-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.slack-dot-red { background-color: #ff5f56; }
+.slack-dot-yellow { background-color: #ffbd2e; }
+.slack-dot-green { background-color: #27c93f; }
+
+.slack-title {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: 12px;
+}
+
+.slack-workspace {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    height: 320px;
+}
+
+@media (max-width: 500px) {
+    .slack-workspace {
+        grid-template-columns: 110px 1fr;
+    }
+}
+
+.slack-sidebar {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-right: 1px solid var(--border);
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+}
+
+.slack-section-title {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    padding-left: 8px;
+}
+
+.slack-channel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    list-style: none;
+}
+
+.slack-channel-item {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.slack-channel-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+}
+
+.slack-channel-item.active {
+    background-color: rgba(var(--accent-rgb), 0.15);
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.slack-chat-area {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slack-chat-header {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.slack-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.slack-msg {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.slack-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background-color: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text);
+    flex-shrink: 0;
+}
+
+.slack-msg-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.slack-msg-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.slack-user {
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text);
+}
+
+.slack-time {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+.slack-text {
+    font-size: 12.5px;
+    color: var(--text);
+}
+
+.slack-text a {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.slack-badge {
+    background-color: rgba(var(--secondary-rgb), 0.15);
+    color: var(--secondary-color);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    align-self: flex-start;
+    margin-top: 4px;
+}
+
+/* Notion Slide-Over Drawer styles */
+.drawer-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.drawer-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.drawer {
+    position: fixed;
+    top: 0;
+    right: -480px;
+    width: 480px;
+    max-width: 100%;
+    height: 100%;
+    background-color: var(--bg);
+    border-left: 1px solid var(--border);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.drawer.open {
+    right: 0;
+}
+
+.drawer-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.drawer-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.drawer-close:hover {
+    color: var(--text);
+}
+
+.drawer-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 24px;
+}
+
+.drawer-content h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--text);
+}
+
+.drawer-content p {
+    margin-bottom: 14px;
+    color: var(--text-muted);
+    font-size: 13.5px;
+    line-height: 1.7;
+}
+
+.drawer-content p strong {
+    color: var(--text);
+}
+
+.drawer-content ul {
+    margin-left: 20px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--text-muted);
+}
+
+/* Contact Form styles */
+.contact-container {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background-color: var(--card-bg);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: opacity 0.3s ease;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+}
+
+.form-input {
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 10px 12px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.submit-btn {
+    background-color: var(--text);
+    color: var(--bg);
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+.success-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.success-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.success-icon {
+    font-size: 32px;
+    color: var(--accent-color);
+    margin-bottom: 12px;
+}
+
+/* Skills Grid */
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-chip {
+    font-size: 12px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 6px;
+    color: var(--text-muted);
+}
+
+.skill-chip:hover {
+    border-color: var(--text-muted);
+    color: var(--text);
+}
+
+/* Footer Section */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-top: 64px;
+}

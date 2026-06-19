@@ -1,0 +1,14 @@
+{
+  "name": "sumukh-singh-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio of Sumukh Singh. Content-led marketer and creative strategist working at the intersection of analytics, technology, and attention.",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
