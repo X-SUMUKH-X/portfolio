@@ -505,6 +505,35 @@ function setupContactForm() {
     }
 }
 
+// IntersectionObserver Fallback for Scroll Reveals (Firefox / older Safari)
+function setupScrollReveal() {
+    // If browser supports CSS scroll-driven timelines natively, we let CSS handle it
+    if (CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) {
+        return;
+    }
+    
+    const sections = document.querySelectorAll('.reveal-section');
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -10% 0px',
+        threshold: 0.05
+    };
+    
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-visible');
+                // Once visible, stop observing
+                obs.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+}
+
 // Initializations on load
 document.addEventListener('DOMContentLoaded', () => {
     // Setup functions
@@ -514,6 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMetricsAnimator();
     setupNotionDrawer();
     setupContactForm();
+    setupScrollReveal();
     
     // Init theme
     const savedTheme = localStorage.getItem('theme') || 'system';
