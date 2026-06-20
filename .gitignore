@@ -13,3 +13,8 @@ dist-ssr
 # OS Files
 .DS_Store
 Thumbs.db
+
+# Media
+*.mov
+*.mp4
+*.webp
