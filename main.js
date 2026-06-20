@@ -1,3 +1,8 @@
+import { inject } from '@vercel/analytics';
+
+// Initialize Vercel Analytics
+inject();
+
 // Theme Toggle Control
 function setTheme(theme) {
     const html = document.documentElement;
