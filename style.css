@@ -77,10 +77,39 @@ body {
 
 /* Page Container */
 .container {
-    max-width: 640px; /* max-w-xl is 576px or 640px. Let's make it 640px */
+    max-width: 960px;
     width: 100%;
     margin: 0 auto;
     padding: 0 24px;
+}
+
+@media (max-width: 1023px) {
+    .container {
+        max-width: 680px;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+}
+
+/* Content limits for comfortable reading length on desktop */
+.readable-content {
+    max-width: 600px;
+    width: 100%;
+}
+
+.exp-list-container, .writing-list-container {
+    max-width: 680px;
+    width: 100%;
+}
+
+.form-container-width {
+    max-width: 600px;
+    width: 100%;
 }
 
 /* Main Layout Grid */
@@ -326,9 +355,13 @@ header {
 
 /* Project Cards / Bento Grid */
 .projects-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.project-card.wide {
+    grid-column: span 2;
 }
 
 .project-card {
@@ -892,7 +925,25 @@ footer {
     color: var(--accent-color);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1023px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .service-card {
+        grid-column: span 1;
+    }
+    .service-card.wide {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    .project-card.wide {
+        grid-column: span 1;
+    }
     .services-grid {
         grid-template-columns: 1fr;
     }
@@ -900,6 +951,9 @@ footer {
         grid-column: span 1;
         min-height: auto;
     }
+}
+
+@media (max-width: 640px) {
     .header-email-link {
         font-size: 12px;
     }
