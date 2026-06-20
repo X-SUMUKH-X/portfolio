@@ -77,7 +77,7 @@ body {
 
 /* Page Container */
 .container {
-    max-w: 640px; /* max-w-xl is 576px or 640px. Let's make it 640px */
+    max-width: 640px; /* max-w-xl is 576px or 640px. Let's make it 640px */
     width: 100%;
     margin: 0 auto;
     padding: 0 24px;
@@ -121,11 +121,15 @@ a:hover {
     text-decoration-color: var(--text);
 }
 
+header {
+    position: relative;
+}
+
 /* Theme Toggle styles */
 .theme-toggle-container {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 3px;
+    right: 0;
     z-index: 100;
     display: flex;
     align-items: center;
@@ -895,6 +899,12 @@ footer {
     .service-card, .service-card.wide {
         grid-column: span 1;
         min-height: auto;
+    }
+    .header-email-link {
+        font-size: 12px;
+    }
+    .theme-toggle-container {
+        top: 2px;
     }
 }
 
