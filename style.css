@@ -127,6 +127,21 @@ a:hover {
     top: 16px;
     right: 16px;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-email-link {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.header-email-link:hover {
+    color: var(--accent-color);
 }
 
 .theme-toggle-bar {
