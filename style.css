@@ -977,17 +977,20 @@ footer {
     font-weight: 700;
     line-height: 1;
     font-family: var(--font-head);
-    color: var(--text);
-    opacity: 0.04;
+    color: var(--accent-color);
+    opacity: 0.15;
+    text-shadow: 0 0 20px rgba(255, 106, 61, 0.45);
     pointer-events: none;
     user-select: none;
     z-index: 1;
-    transition: opacity 0.2s ease, color 0.2s ease;
+    transition: opacity 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
 }
 
-.service-card:hover .service-card-num {
-    opacity: 0.12;
-    color: var(--accent-color);
+.service-card:hover .service-card-num,
+.service-card:active .service-card-num {
+    opacity: 0.25;
+    color: #D84315;
+    text-shadow: none;
 }
 
 @media (max-width: 1023px) {
@@ -1027,11 +1030,17 @@ footer {
 }
 
 @media (max-width: 640px) {
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
     .header-email-link {
         font-size: 12px;
     }
     .theme-toggle-container {
-        top: 2px;
+        position: static;
+        flex-shrink: 0;
     }
     .exp-list-container .exp-header {
         display: flex;
