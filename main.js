@@ -463,6 +463,7 @@ function setupContactForm() {
                 }
 
                 // Submit to FormSubmit AJAX endpoint
+                // NOTE: This email is a public contact submission endpoint, intentionally exposed on the client side.
                 fetch('https://formsubmit.co/ajax/sumukh.workk@gmail.com', {
                     method: 'POST',
                     headers: { 

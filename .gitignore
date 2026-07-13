@@ -8,7 +8,11 @@ yarn-error.log*
 node_modules
 dist
 dist-ssr
+.env
+.env.local
+.env.*.local
 *.local
+
 
 # OS Files
 .DS_Store
@@ -18,3 +22,8 @@ Thumbs.db
 *.mov
 *.mp4
 *.webp
+
+# Agent & Temp
+.agents/
+sumukh-singh-portfolio@1.0.0
+vite
