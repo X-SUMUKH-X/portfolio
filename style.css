@@ -1032,15 +1032,18 @@ footer {
 @media (max-width: 640px) {
     header {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: 12px;
     }
     .header-email-link {
         font-size: 12px;
     }
     .theme-toggle-container {
         position: static;
-        flex-shrink: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     .exp-list-container .exp-header {
         display: flex;
