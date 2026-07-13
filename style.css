@@ -1030,24 +1030,12 @@ footer {
 }
 
 @media (max-width: 640px) {
-    header {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-    }
-    header > div:first-child {
-        width: 100%;
-        margin-bottom: 12px;
+    .header-email-link {
+        font-size: 11px;
     }
     .theme-toggle-container {
-        position: static;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .header-email-link {
-        font-size: 12px;
+        top: 0;
+        gap: 8px;
     }
     .exp-list-container .exp-header {
         display: flex;
