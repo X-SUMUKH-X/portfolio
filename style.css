@@ -450,15 +450,6 @@ header {
     color: var(--secondary-color);
 }
 
-.project-tag.violet-tag {
-    background-color: rgba(192, 132, 252, 0.12);
-    color: #C084FC;
-}
-
-.project-tag.green-tag {
-    background-color: rgba(74, 222, 128, 0.1);
-    color: #4ADE80;
-}
 
 .project-stats {
     display: grid;
