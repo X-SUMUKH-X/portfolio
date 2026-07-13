@@ -1022,10 +1022,26 @@ footer {
     }
     .services-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
     }
     .service-card, .service-card.wide {
         grid-column: span 1;
         min-height: auto;
+        padding: 20px;
+        border-radius: 16px;
+    }
+    .service-card-title {
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+    .service-card-desc {
+        font-size: 13px;
+        line-height: 1.65;
+    }
+    .service-card-num {
+        font-size: 72px;
+        bottom: -10px;
+        right: 8px;
     }
 }
 
