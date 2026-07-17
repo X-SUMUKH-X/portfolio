@@ -447,56 +447,117 @@ function setupContactForm() {
     const form = document.getElementById('contactForm');
     const overlay = document.getElementById('successOverlay');
     const submitBtn = form ? form.querySelector('.submit-btn') : null;
-    
+
+    // Client-side rate limiter: max 5 submissions per 15 minutes
+    const RATE_LIMIT_MAX = 5;
+    const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+    const RATE_LIMIT_KEY = 'cf_rl';
+
+    function isRateLimited() {
+        try {
+            const data = JSON.parse(sessionStorage.getItem(RATE_LIMIT_KEY) || '{"c":0,"t":0}');
+            const now = Date.now();
+            if (now - data.t > RATE_LIMIT_WINDOW_MS) {
+                return false; // window expired
+            }
+            return data.c >= RATE_LIMIT_MAX;
+        } catch { return false; }
+    }
+
+    function recordSubmission() {
+        try {
+            const data = JSON.parse(sessionStorage.getItem(RATE_LIMIT_KEY) || '{"c":0,"t":0}');
+            const now = Date.now();
+            if (now - data.t > RATE_LIMIT_WINDOW_MS) {
+                sessionStorage.setItem(RATE_LIMIT_KEY, JSON.stringify({ c: 1, t: now }));
+            } else {
+                data.c += 1;
+                sessionStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(data));
+            }
+        } catch { /* silent */ }
+    }
+
+    // Strip HTML tags to prevent XSS in form payloads
+    function sanitize(str) {
+        const el = document.createElement('div');
+        el.textContent = str;
+        return el.innerHTML;
+    }
+
+    // Basic email format validation
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
     if (form && overlay) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            
-            const name = document.getElementById('nameInput').value.trim();
-            const email = document.getElementById('emailInput').value.trim();
-            const message = document.getElementById('msgInput').value.trim();
-            
-            if (name && email && message) {
-                if (submitBtn) {
-                    submitBtn.disabled = true;
-                    submitBtn.textContent = 'Shipping...';
-                }
 
-                // Submit to FormSubmit AJAX endpoint
-                // NOTE: This email is a public contact submission endpoint, intentionally exposed on the client side.
-                fetch('https://formsubmit.co/ajax/sumukh.workk@gmail.com', {
-                    method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        message: message,
-                        _subject: `New Portfolio Message from ${name}`
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (submitBtn) {
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = 'Send Message';
-                    }
-                    overlay.classList.add('active');
-                    form.reset();
-                })
-                .catch(error => {
-                    console.error('Submission failed:', error);
-                    if (submitBtn) {
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = 'Send Message';
-                    }
-                    // Fallback to overlay and reset so user flow isn't broken
-                    overlay.classList.add('active');
-                    form.reset();
-                });
+            // Rate limit check
+            if (isRateLimited()) {
+                alert('Too many submissions. Please try again later.');
+                return;
             }
+
+            const rawName = document.getElementById('nameInput').value.trim();
+            const rawEmail = document.getElementById('emailInput').value.trim();
+            const rawMessage = document.getElementById('msgInput').value.trim();
+
+            // Validation: required, length, and format
+            if (!rawName || !rawEmail || !rawMessage) return;
+            if (rawName.length > 100 || rawEmail.length > 254 || rawMessage.length > 2000) {
+                alert('One or more fields exceed the maximum allowed length.');
+                return;
+            }
+            if (!isValidEmail(rawEmail)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Sanitize inputs
+            const name = sanitize(rawName);
+            const email = sanitize(rawEmail);
+            const message = sanitize(rawMessage);
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Shipping...';
+            }
+
+            // Submit to FormSubmit AJAX endpoint
+            // NOTE: This email is a public contact submission endpoint, intentionally exposed on the client side.
+            fetch('https://formsubmit.co/ajax/sumukh.workk@gmail.com', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: message,
+                    _subject: `New Portfolio Message from ${name}`
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                }
+                recordSubmission();
+                overlay.classList.add('active');
+                form.reset();
+            })
+            .catch(() => {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                }
+                // Fallback to overlay and reset so user flow isn't broken
+                overlay.classList.add('active');
+                form.reset();
+            });
         });
         
         // Allow close of overlay
