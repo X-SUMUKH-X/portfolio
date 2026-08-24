@@ -554,16 +554,7 @@ footer{
   body{font-size:15px}
   .page{padding-inline:16px}
   nav{padding:14px 0}
-  .navlinks{
-    display:none;
-    width:100%;
-    padding:14px 0 2px;
-    flex-direction:column;
-    gap:12px;
-    border-top:1px solid var(--line);
-  }
-  nav:focus-within .navlinks{display:flex}
-  .navlinks a{font-size:13px}
+  .navlinks{display:none}
   .hero{padding:64px 0 84px}
   .hero h1{font-size:clamp(46px,14.2vw,76px);letter-spacing:-.045em;line-height:.94}
   .hero-foot{margin-top:34px}
@@ -2612,13 +2603,6 @@ nav{
       hero.style.transform = 'translate3d(0,-6px,0)';
       settled = true;
     }, { passive:true });
-  }
-
-  const navCta = document.querySelector('.nav-cta');
-  if (navCta) {
-    navCta.addEventListener('click', () => {
-      window.location.href = 'mailto:sumukh.workk@gmail.com';
-    });
   }
 })();
 </script>
