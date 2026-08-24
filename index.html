@@ -1151,16 +1151,38 @@ footer{
   .browser-art:before{width:42px;height:42px}
 
   /* blinkit */
-  .artifact-blinkit{padding:9px;background:#f5f4ef;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box;height:100%}
-  .blink-head{font-size:7.5px}
-  .blink-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:5px}
-  .blink-kpis>div{padding:4px 6px;border-radius:6px}
-  .blink-kpis small{font-size:5.5px}
-  .blink-kpis b{font-size:10px;margin-top:2px}
-  .blink-chart{display:grid;grid-template-columns:1.4fr .6fr;gap:5px;margin-top:5px;flex:1}
-  .blink-bars{height:auto;min-height:48px;padding:5px 6px;gap:3px;border-radius:6px}
-  .blink-side{padding:6px;border-radius:6px;display:flex;flex-direction:column;justify-content:center}
-  .blink-side span{height:4px;margin:2.5px 0}
+  .case:has(.artifact-blinkit) .case-artifact,
+  details.case:last-of-type .case-artifact{
+    min-height:auto;
+    height:auto;
+    padding:28px 10px 10px;
+  }
+  .artifact-blinkit{
+    position:relative;
+    inset:auto;
+    width:100%;
+    height:auto;
+    padding:12px;
+    background:#f5f4ef;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    box-sizing:border-box;
+    border-radius:12px;
+  }
+  .blink-head{font-size:7.5px;letter-spacing:.08em;display:flex;justify-content:space-between;color:#777}
+  .blink-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:0}
+  .blink-kpis>div{background:#fff;border:1px solid #d8d8d2;border-radius:6px;padding:6px 7px}
+  .blink-kpis small{font-size:6px;color:#777;display:block;text-transform:uppercase;letter-spacing:.06em}
+  .blink-kpis b{font-size:11px;letter-spacing:-.03em;margin-top:2px;display:block;color:#111}
+  .blink-chart{display:flex;flex-direction:column;gap:6px;margin-top:0}
+  .blink-bars{height:54px;background:#fff;border:1px solid #d8d8d2;border-radius:6px;padding:6px 8px;display:flex;align-items:end;gap:4px}
+  .blink-bars i{flex:1;background:#111;border-radius:3px 3px 1px 1px}
+  .blink-side{background:#fff;border:1px solid #d8d8d2;border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+  .blink-side span{height:4px;background:#e6e6e2;border-radius:99px;margin:0;display:block}
+  .blink-side span:first-child{background:#111;width:92%}
+  .blink-side span:nth-child(2){width:76%}
+  .blink-side span:nth-child(3){width:60%}
 }
 
 
