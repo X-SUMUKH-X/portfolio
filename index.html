@@ -341,7 +341,14 @@ section{padding:104px 0}
 .work-list{border-bottom:1px solid var(--ink)}
 .case{border-top:1px solid var(--ink)}
 .case:first-child{border-top:0}
-.case summary{list-style:none;cursor:pointer}
+.case summary{
+  list-style:none;
+  cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-user-select:none;
+  user-select:none;
+}
 .case summary::-webkit-details-marker{display:none}
 .work{
   display:grid;
@@ -349,6 +356,8 @@ section{padding:104px 0}
   gap:20px;
   align-items:center;
   padding:26px 0;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
 }
 .case-name{
   font-size:clamp(32px,5vw,68px);
@@ -2602,6 +2611,13 @@ nav{
       hero.style.transform = 'translate3d(0,-6px,0)';
       settled = true;
     }, { passive:true });
+  }
+
+  const navCta = document.querySelector('.nav-cta');
+  if (navCta) {
+    navCta.addEventListener('click', () => {
+      window.location.href = 'mailto:sumukh.workk@gmail.com';
+    });
   }
 })();
 </script>
