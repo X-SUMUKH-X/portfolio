@@ -1,45 +1,61 @@
 /**
- * Vercel Edge Middleware — Markdown Content Negotiation
- *
- * When a request arrives with Accept: text/markdown, serve the
- * llms-full.txt content with:
- *   Content-Type: text/markdown; charset=utf-8
- *   Vary: Accept, Accept-Encoding
- *
- * This satisfies acceptmarkdown.com compliance (#4 in the agentic audit).
- * Only applies to the homepage (/). Other routes pass through unchanged.
+ * Vercel Edge Middleware — Markdown Content Negotiation & Agent-Friendly Error Handling
  */
 
 export const config = {
-  matcher: ['/', '/index.html'],
+  matcher: ['/((?!_next|assets|.*\\..*).*)', '/', '/api/:path*'],
 };
 
 export default async function middleware(req) {
+  const url = new URL(req.url);
   const accept = req.headers.get('accept') ?? '';
 
-  // Only intercept when markdown is explicitly preferred
-  if (!accept.includes('text/markdown')) {
-    return; // pass through — next() equivalent in Vercel Edge Middleware
+  // 1. If requesting markdown on homepage
+  if ((url.pathname === '/' || url.pathname === '/index.html') && accept.includes('text/markdown')) {
+    const mdUrl = new URL('/llms-full.txt', url.origin);
+    try {
+      const mdRes = await fetch(mdUrl.toString());
+      const text = await mdRes.text();
+      return new Response(text, {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/markdown; charset=utf-8',
+          'Vary': 'Accept, Accept-Encoding',
+          'Cache-Control': 'public, max-age=3600',
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
+    } catch {
+      return;
+    }
   }
 
-  const url = new URL(req.url);
-  const mdUrl = new URL('/llms-full.txt', url.origin);
+  // 2. If requesting markdown on an unknown non-API route
+  const knownRoutes = ['/', '/about', '/contact', '/privacy', '/developers', '/docs', '/api', '/creative-strategy', '/slack-swiggy-hq'];
+  const isApi = url.pathname.startsWith('/api');
+  
+  if (!isApi && !knownRoutes.includes(url.pathname) && accept.includes('text/markdown')) {
+    const md404 = `# 404 — Not Found
 
-  try {
-    const mdRes = await fetch(mdUrl.toString());
-    const text = await mdRes.text();
+The requested resource \`${url.pathname}\` was not found.
 
-    return new Response(text, {
-      status: 200,
+## Recovery Links
+- Homepage: ${url.origin}/
+- Portfolio Index (llms.txt): ${url.origin}/llms.txt
+- Developer Portal: ${url.origin}/developers
+- OpenAPI 3.1 Spec: ${url.origin}/openapi.json
+- Sitemap: ${url.origin}/sitemap.xml
+- Contact: sumukh.workk@gmail.com
+`;
+    return new Response(md404, {
+      status: 404,
       headers: {
         'Content-Type': 'text/markdown; charset=utf-8',
         'Vary': 'Accept, Accept-Encoding',
-        'Cache-Control': 'public, max-age=3600',
         'Access-Control-Allow-Origin': '*',
       },
     });
-  } catch {
-    // If fetch fails, fall through to normal response
-    return;
   }
+
+  return;
 }

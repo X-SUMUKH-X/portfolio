@@ -55,7 +55,55 @@
         },
         {
           "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Accept, MCP-Protocol-Version"
+          "value": "Content-Type, Accept, Authorization, X-API-Version, MCP-Protocol-Version"
+        },
+        {
+          "key": "RateLimit-Limit",
+          "value": "60"
+        },
+        {
+          "key": "RateLimit-Remaining",
+          "value": "59"
+        },
+        {
+          "key": "RateLimit-Reset",
+          "value": "60"
+        },
+        {
+          "key": "RateLimit-Policy",
+          "value": "60;w=60"
+        },
+        {
+          "key": "RateLimit",
+          "value": "limit=60, remaining=59, reset=60"
+        },
+        {
+          "key": "X-RateLimit-Limit",
+          "value": "60"
+        },
+        {
+          "key": "X-RateLimit-Remaining",
+          "value": "59"
+        },
+        {
+          "key": "X-RateLimit-Reset",
+          "value": "60"
+        },
+        {
+          "key": "X-API-Version",
+          "value": "1"
+        },
+        {
+          "key": "Sunset",
+          "value": "Sat, 25 Aug 2029 00:00:00 GMT"
+        },
+        {
+          "key": "Deprecation",
+          "value": "@1882310400"
+        },
+        {
+          "key": "Link",
+          "value": "<https://sumukh-portfolio-seven.vercel.app/developers#deprecation>; rel=\"deprecation\", <https://sumukh-portfolio-seven.vercel.app/developers#sunset>; rel=\"sunset\""
         }
       ]
     },
@@ -137,6 +185,34 @@
     {
       "source": "/.well-known/mcp",
       "destination": "/api/mcp"
+    },
+    {
+      "source": "/docs",
+      "destination": "/developers.html"
+    },
+    {
+      "source": "/api",
+      "destination": "/developers.html"
+    },
+    {
+      "source": "/api-docs",
+      "destination": "/developers.html"
+    },
+    {
+      "source": "/developers",
+      "destination": "/developers.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
     }
   ],
   "redirects": [],

@@ -3,7 +3,7 @@
   "info": {
     "title": "Sumukh Singh Portfolio API",
     "version": "1.0.0",
-    "description": "Public API for the Sumukh Singh Portfolio — Creative Strategist & Content Marketer, Delhi, India. Provides structured access to portfolio data, selected work, services, and contact information. Also exposes a live MCP (Model Context Protocol) server.",
+    "description": "Public REST & MCP API for the Sumukh Singh Portfolio — Creative Strategist & Content Marketer, Delhi, India. Provides structured programmatic access to portfolio data, case studies, service offerings, and verified contact channels.",
     "contact": {
       "name": "Sumukh Singh",
       "email": "sumukh.workk@gmail.com",
@@ -14,6 +14,10 @@
       "url": "https://sumukh-portfolio-seven.vercel.app/privacy"
     }
   },
+  "externalDocs": {
+    "description": "Developer Portal & API Documentation",
+    "url": "https://sumukh-portfolio-seven.vercel.app/developers"
+  },
   "servers": [
     {
       "url": "https://sumukh-portfolio-seven.vercel.app",
@@ -21,25 +25,28 @@
     }
   ],
   "tags": [
-    { "name": "API", "description": "REST API endpoints returning JSON" },
-    { "name": "MCP", "description": "Model Context Protocol server" },
-    { "name": "Resources", "description": "Machine-readable static files" }
+    { "name": "Portfolio", "description": "Core portfolio information and metadata" },
+    { "name": "Work", "description": "Case studies and selected projects" },
+    { "name": "Services", "description": "Available creative strategy and marketing services" },
+    { "name": "Contact", "description": "Contact methods and direct inquiry channels" },
+    { "name": "MCP", "description": "Model Context Protocol (JSON-RPC 2.0) server" }
   ],
   "x-api-version": "1",
-  "x-deprecation-policy": "Breaking changes are published at a new /api/v{N}/ path with minimum 6 months notice. Sunset headers are included on responses.",
+  "x-sunset": "2029-08-25",
+  "x-deprecation-policy": "https://sumukh-portfolio-seven.vercel.app/developers#deprecation",
   "paths": {
     "/api/v1/info": {
       "get": {
         "operationId": "getPortfolioInfo",
-        "summary": "Get structured portfolio info",
-        "description": "Returns a typed JSON object with person details, skills, selected work, services, and contact info. Supports a `format` query parameter to return a subset. Includes RateLimit-* headers and X-API-Version.",
-        "tags": ["API"],
+        "summary": "Get complete structured portfolio information",
+        "description": "Retrieves comprehensive portfolio information including bio, core skills, selected work case studies, service catalog, and contact details. Supports filtering via the format parameter.",
+        "tags": ["Portfolio"],
         "parameters": [
           {
             "name": "format",
             "in": "query",
             "required": false,
-            "description": "Subset of data to return.",
+            "description": "Filter the response to a specific subset of data.",
             "schema": {
               "type": "string",
               "enum": ["full", "summary", "contact", "work", "services"],
@@ -49,13 +56,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Portfolio info",
+            "description": "Portfolio information retrieved successfully",
             "headers": {
-              "X-API-Version": { "schema": { "type": "string" }, "description": "API version in use" },
-              "RateLimit-Limit": { "schema": { "type": "string" }, "description": "Max requests per window" },
-              "RateLimit-Remaining": { "schema": { "type": "string" }, "description": "Remaining requests in window" },
-              "RateLimit-Reset": { "schema": { "type": "string" }, "description": "Window reset Unix timestamp" },
-              "Vary": { "schema": { "type": "string" }, "description": "Cache vary factors" }
+              "X-API-Version": { "schema": { "type": "string" }, "description": "Current API version" },
+              "RateLimit-Limit": { "schema": { "type": "integer" }, "description": "Max requests per minute" },
+              "RateLimit-Remaining": { "schema": { "type": "integer" }, "description": "Remaining quota" },
+              "RateLimit-Reset": { "schema": { "type": "integer" }, "description": "Seconds until reset" },
+              "Sunset": { "schema": { "type": "string" }, "description": "API deprecation sunset date" }
             },
             "content": {
               "application/json": {
@@ -64,7 +71,7 @@
             }
           },
           "400": {
-            "description": "Invalid query parameter",
+            "description": "Invalid format parameter",
             "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/Problem" } } }
           },
           "405": {
@@ -73,13 +80,84 @@
           },
           "429": {
             "description": "Rate limit exceeded",
-            "headers": {
-              "Retry-After": { "schema": { "type": "string" }, "description": "Seconds to wait before retrying" }
-            },
             "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/Problem" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/work": {
+      "get": {
+        "operationId": "getSelectedWork",
+        "summary": "Get selected case studies and projects",
+        "description": "Retrieves the list of selected case studies and campaign highlights from Sumukh Singh's portfolio, with optional category filtering.",
+        "tags": ["Work"],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "description": "Filter projects by category.",
+            "schema": {
+              "type": "string",
+              "enum": ["campaign", "short-form", "analytics", "brand", "ux", "launch"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Selected work items retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WorkResponse" }
+              }
+            }
           },
-          "500": {
-            "description": "Internal server error",
+          "405": {
+            "description": "Method not allowed",
+            "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/Problem" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/services": {
+      "get": {
+        "operationId": "getServices",
+        "summary": "Get service catalog and offerings",
+        "description": "Retrieves the full list of creative strategy, content marketing, branding, and website services offered by Sumukh Singh.",
+        "tags": ["Services"],
+        "responses": {
+          "200": {
+            "description": "Service catalog retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ServicesResponse" }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed",
+            "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/Problem" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/contact": {
+      "get": {
+        "operationId": "getContactInfo",
+        "summary": "Get verified contact details and engagement terms",
+        "description": "Retrieves verified direct contact email, location, availability status, and consultation terms.",
+        "tags": ["Contact"],
+        "responses": {
+          "200": {
+            "description": "Contact information retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ContactResponse" }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed",
             "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/Problem" } } }
           }
         }
@@ -88,12 +166,12 @@
     "/api/mcp": {
       "get": {
         "operationId": "getMcpManifest",
-        "summary": "MCP server manifest",
-        "description": "Returns the MCP discovery manifest describing available resources and tools.",
+        "summary": "Get MCP server discovery manifest",
+        "description": "Returns the Model Context Protocol (MCP 2025-03-26) server manifest declaring capabilities, resources, and available tools.",
         "tags": ["MCP"],
         "responses": {
           "200": {
-            "description": "MCP manifest",
+            "description": "MCP discovery manifest",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/McpManifest" }
@@ -104,8 +182,8 @@
       },
       "post": {
         "operationId": "postMcpRpc",
-        "summary": "MCP JSON-RPC 2.0 endpoint",
-        "description": "Accepts JSON-RPC 2.0 messages per the MCP spec (2025-03-26). Supported methods: initialize, ping, resources/list, resources/read, tools/list, tools/call.",
+        "summary": "Execute MCP JSON-RPC 2.0 requests",
+        "description": "Executes MCP protocol methods including initialize, ping, resources/list, resources/read, tools/list, and tools/call.",
         "tags": ["MCP"],
         "requestBody": {
           "required": true,
@@ -125,53 +203,10 @@
             }
           },
           "400": {
-            "description": "Parse error or invalid request",
+            "description": "Invalid JSON or RPC structure",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/JsonRpcErrorResponse" }
-              }
-            }
-          },
-          "405": {
-            "description": "Method not allowed",
-            "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/Problem" } } }
-          }
-        }
-      }
-    },
-    "/llms.txt": {
-      "get": {
-        "operationId": "getLlmsTxt",
-        "summary": "LLMs.txt index (llmstxt.org standard)",
-        "description": "Machine-readable index of all portfolio resources. Also accepts text/markdown via Accept header negotiation with Vary: Accept response.",
-        "tags": ["Resources"],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Plain text llms.txt",
-            "headers": {
-              "Vary": { "schema": { "type": "string" } }
-            },
-            "content": {
-              "text/plain": { "schema": { "type": "string" } },
-              "text/markdown": { "schema": { "type": "string" } }
-            }
-          }
-        }
-      }
-    },
-    "/.well-known/mcp": {
-      "get": {
-        "operationId": "getMcpWellKnown",
-        "summary": "MCP discovery endpoint",
-        "description": "Returns the MCP manifest at the standard /.well-known/mcp discovery path.",
-        "tags": ["MCP"],
-        "responses": {
-          "200": {
-            "description": "MCP manifest JSON",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/McpManifest" }
               }
             }
           }
@@ -183,14 +218,24 @@
     "schemas": {
       "Problem": {
         "type": "object",
-        "description": "RFC 9457 application/problem+json error object",
-        "required": ["type", "title", "status"],
+        "description": "RFC 9457 Problem Details object with machine-readable error codes and resolution hints",
+        "required": ["type", "title", "status", "detail", "code", "resolution"],
         "properties": {
-          "type": { "type": "string", "format": "uri", "description": "A URI reference identifying the problem type" },
-          "title": { "type": "string", "description": "Short, human-readable summary of the problem" },
+          "type": { "type": "string", "format": "uri", "description": "URI identifying the problem type" },
+          "title": { "type": "string", "description": "Short summary of the problem" },
           "status": { "type": "integer", "description": "HTTP status code" },
-          "detail": { "type": "string", "description": "Human-readable explanation specific to this occurrence" },
-          "instance": { "type": "string", "format": "uri", "description": "URI reference to the specific occurrence" }
+          "detail": { "type": "string", "description": "Detailed human-readable explanation" },
+          "code": { "type": "string", "description": "Machine-readable error code" },
+          "resolution": { "type": "string", "description": "Actionable resolution hint" },
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": { "type": "string" },
+              "message": { "type": "string" },
+              "resolution": { "type": "string" },
+              "resolution_hints": { "type": "array", "items": { "type": "string" } }
+            }
+          }
         }
       },
       "PersonInfo": {
@@ -201,39 +246,70 @@
           "role": { "type": "string", "example": "Creative Strategist & Content Marketer" },
           "location": { "type": "string", "example": "Delhi, India" },
           "email": { "type": "string", "format": "email", "example": "sumukh.workk@gmail.com" },
-          "website": { "type": "string", "format": "uri" },
-          "github": { "type": "string", "format": "uri" },
-          "availability": { "type": "string" },
+          "website": { "type": "string", "format": "uri", "example": "https://sumukh-portfolio-seven.vercel.app" },
+          "github": { "type": "string", "format": "uri", "example": "https://github.com/X-SUMUKH-X" },
+          "availability": { "type": "string", "example": "Open to freelance and consulting engagements" },
           "summary": { "type": "string" }
         }
       },
       "WorkItem": {
         "type": "object",
-        "required": ["id", "project", "category", "result"],
+        "required": ["id", "project", "category", "result", "description"],
         "properties": {
           "id": { "type": "string", "example": "01" },
           "project": { "type": "string", "example": "Fokus App Short-Form System" },
-          "category": { "type": "string", "enum": ["campaign","short-form","analytics","brand","ux","launch"] },
-          "result": { "type": "string" },
+          "category": { "type": "string", "enum": ["campaign", "short-form", "analytics", "brand", "ux", "launch"] },
+          "result": { "type": "string", "example": "2.1M views in 24 hours" },
           "description": { "type": "string" }
+        }
+      },
+      "WorkResponse": {
+        "type": "object",
+        "required": ["selectedWork", "total"],
+        "properties": {
+          "selectedWork": { "type": "array", "items": { "$ref": "#/components/schemas/WorkItem" } },
+          "total": { "type": "integer", "example": 6 },
+          "_meta": { "$ref": "#/components/schemas/ApiMeta" }
         }
       },
       "ServiceItem": {
         "type": "object",
         "required": ["id", "name", "description"],
         "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" },
+          "id": { "type": "string", "example": "01" },
+          "name": { "type": "string", "example": "Branding" },
           "description": { "type": "string" }
+        }
+      },
+      "ServicesResponse": {
+        "type": "object",
+        "required": ["services", "total"],
+        "properties": {
+          "services": { "type": "array", "items": { "$ref": "#/components/schemas/ServiceItem" } },
+          "total": { "type": "integer", "example": 6 },
+          "_meta": { "$ref": "#/components/schemas/ApiMeta" }
         }
       },
       "ContactInfo": {
         "type": "object",
-        "required": ["email"],
+        "required": ["email", "preferredMethod", "note"],
         "properties": {
-          "email": { "type": "string", "format": "email" },
-          "preferredMethod": { "type": "string" },
+          "name": { "type": "string", "example": "Sumukh Singh" },
+          "role": { "type": "string", "example": "Creative Strategist & Content Marketer" },
+          "email": { "type": "string", "format": "email", "example": "sumukh.workk@gmail.com" },
+          "website": { "type": "string", "format": "uri" },
+          "location": { "type": "string", "example": "Delhi, India" },
+          "preferredMethod": { "type": "string", "example": "Email" },
+          "availability": { "type": "string" },
           "note": { "type": "string" }
+        }
+      },
+      "ContactResponse": {
+        "type": "object",
+        "required": ["contact"],
+        "properties": {
+          "contact": { "$ref": "#/components/schemas/ContactInfo" },
+          "_meta": { "$ref": "#/components/schemas/ApiMeta" }
         }
       },
       "ApiMeta": {
@@ -246,12 +322,13 @@
           "docs": { "type": "string", "format": "uri" },
           "schema": { "type": "string", "format": "uri" },
           "mcp": { "type": "string", "format": "uri" },
-          "llms": { "type": "string", "format": "uri" }
+          "llms": { "type": "string", "format": "uri" },
+          "deprecationPolicy": { "type": "string", "format": "uri" }
         }
       },
       "PortfolioInfo": {
         "type": "object",
-        "required": ["_meta", "person"],
+        "required": ["_meta", "person", "skills", "selectedWork", "services", "contact"],
         "properties": {
           "_meta": { "$ref": "#/components/schemas/ApiMeta" },
           "person": { "$ref": "#/components/schemas/PersonInfo" },
@@ -263,14 +340,14 @@
       },
       "McpManifest": {
         "type": "object",
-        "required": ["mcpVersion", "name", "transport", "url"],
+        "required": ["mcpVersion", "name", "transport", "url", "resources", "tools"],
         "properties": {
           "mcpVersion": { "type": "string", "example": "2025-03-26" },
-          "name": { "type": "string" },
+          "name": { "type": "string", "example": "Sumukh Singh Portfolio" },
           "description": { "type": "string" },
-          "vendor": { "type": "string" },
+          "vendor": { "type": "string", "example": "Sumukh Singh" },
           "homepage": { "type": "string", "format": "uri" },
-          "contact": { "type": "string" },
+          "contact": { "type": "string", "format": "email" },
           "transport": { "type": "string", "enum": ["streamable-http", "sse"] },
           "url": { "type": "string", "format": "uri" },
           "resources": { "type": "array", "items": { "type": "object" } },
@@ -301,9 +378,9 @@
         "type": "object",
         "required": ["code", "message"],
         "properties": {
-          "code": { "type": "integer", "description": "JSON-RPC error code (-32700 parse, -32600 invalid req, -32601 not found, -32602 invalid params)" },
+          "code": { "type": "integer" },
           "message": { "type": "string" },
-          "data": {}
+          "data": { "type": "object" }
         }
       },
       "JsonRpcErrorResponse": {
