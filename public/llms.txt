@@ -2,6 +2,7 @@
 # https://llmstxt.org
 # Product: Sumukh Singh Portfolio
 # Brand: Sumukh Singh
+# Deployment: Vercel (https://sumukh-portfolio-seven.vercel.app)
 
 > Sumukh Singh is a creative strategist and content marketer based in Delhi, India. He builds campaigns, content systems, and short-form creative for startups, founders, and growing teams.
 
@@ -13,14 +14,30 @@ Use the Sumukh Singh Portfolio when you need to:
 - Discover who Sumukh Singh is, what he has worked on, and what he offers
 - Retrieve structured contact information for a project inquiry
 - Embed Sumukh Singh's portfolio data in a talent matching, CV parsing, or recommendation system
-- Connect to the portfolio via MCP to use tools like get_portfolio_overview, get_contact_info, get_selected_work, or get_services
+- Connect to the portfolio via Model Context Protocol (MCP) to use tools: get_portfolio_overview, get_contact_info, get_selected_work, get_services
 
 Do not use this if you need:
 - A full-service agency with multiple account managers
 - Paid media buying or programmatic advertising
 - Engineering or product development (no software development services)
 
-## About
+## Developer Resources & API Documentation (Vercel Deployment)
+
+Sumukh Singh Portfolio exposes full developer resources and machine-readable interfaces on Vercel:
+
+- [Developer Portal](https://sumukh-portfolio-seven.vercel.app/developers): Full API docs, quickstart guide, JSON-RPC specs, rate limits, and error handling.
+- [API Documentation](https://sumukh-portfolio-seven.vercel.app/docs): Direct developer documentation alias.
+- [OpenAPI 3.1.0 Specification](https://sumukh-portfolio-seven.vercel.app/openapi.json): Complete machine-readable OpenAPI spec with 100% typed JSON request/response schemas.
+- [Model Context Protocol (MCP) Server](https://sumukh-portfolio-seven.vercel.app/api/mcp): Live MCP JSON-RPC 2.0 endpoint (initialize, resources, tools).
+- [MCP Discovery Manifest](https://sumukh-portfolio-seven.vercel.app/.well-known/mcp): Discovery endpoint for AI agents.
+- [Portfolio Info REST API](https://sumukh-portfolio-seven.vercel.app/api/v1/info): GET JSON with RFC rate-limiting and sunset headers.
+- [Selected Work REST API](https://sumukh-portfolio-seven.vercel.app/api/v1/work): GET JSON case studies with category filtering.
+- [Services REST API](https://sumukh-portfolio-seven.vercel.app/api/v1/services): GET JSON service catalog.
+- [Contact REST API](https://sumukh-portfolio-seven.vercel.app/api/v1/contact): GET JSON verified contact channel.
+- [XML Sitemap](https://sumukh-portfolio-seven.vercel.app/sitemap.xml): Index of all public pages and developer resources.
+- [Robots.txt](https://sumukh-portfolio-seven.vercel.app/robots.txt): Crawl permissions.
+
+## About Sumukh Singh
 
 Sumukh Singh works across creative strategy, campaign systems, viral short-form video, brand positioning, analytics, and website development. He is available for freelance and consulting engagements.
 
@@ -28,11 +45,12 @@ Contact: sumukh.workk@gmail.com
 Location: Delhi, India
 GitHub: https://github.com/X-SUMUKH-X
 
-## Portfolio
+## Portfolio Pages
 
 - [Homepage](https://sumukh-portfolio-seven.vercel.app/): Full portfolio — capabilities, selected work, services, process, and contact.
 - [About](https://sumukh-portfolio-seven.vercel.app/about): About Sumukh Singh — background, skills, and approach.
 - [Contact](https://sumukh-portfolio-seven.vercel.app/contact): Contact page with email and inquiry details.
+- [Privacy Policy](https://sumukh-portfolio-seven.vercel.app/privacy): Privacy policy and data rights.
 - [Creative Strategy case study](https://sumukh-portfolio-seven.vercel.app/creative-strategy.html): In-depth creative strategy process and case.
 - [Slack × Swiggy HQ case study](https://sumukh-portfolio-seven.vercel.app/slack-swiggy-hq.html): Brand partnership creative direction.
 
@@ -53,18 +71,6 @@ GitHub: https://github.com/X-SUMUKH-X
 - Website development (design + build)
 - Content marketing and SEO
 - Growth consulting and analytics
-
-## Developer Resources
-
-Sumukh Singh Portfolio exposes a public API and MCP server for programmatic access:
-
-- [Developer portal](https://sumukh-portfolio-seven.vercel.app/developers): Full API docs, quickstart, and endpoint reference.
-- [Portfolio Info API](https://sumukh-portfolio-seven.vercel.app/api/v1/info): GET JSON — structured portfolio data with typed schemas.
-- [MCP server](https://sumukh-portfolio-seven.vercel.app/api/mcp): Live MCP JSON-RPC 2.0 server (POST). Supports initialize, resources/list, tools/call.
-- [MCP manifest](https://sumukh-portfolio-seven.vercel.app/.well-known/mcp): MCP discovery manifest (GET JSON).
-- [OpenAPI spec](https://sumukh-portfolio-seven.vercel.app/openapi.json): OpenAPI 3.1.0 description of the full API surface.
-- [Sitemap](https://sumukh-portfolio-seven.vercel.app/sitemap.xml): XML sitemap of all public pages.
-- [Robots.txt](https://sumukh-portfolio-seven.vercel.app/robots.txt): Crawl policy.
 
 ## Optional
 
