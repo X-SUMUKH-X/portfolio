@@ -1,0 +1,122 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Sumukh Singh Portfolio",
+    "version": "1.0.0",
+    "description": "Sumukh Singh — Creative Strategist & Content Marketer, Delhi. This describes the public contact and resource surface of sumukh-portfolio-seven.vercel.app.",
+    "contact": {
+      "name": "Sumukh Singh",
+      "email": "sumukh.workk@gmail.com",
+      "url": "https://sumukh-portfolio-seven.vercel.app/"
+    },
+    "license": {
+      "name": "Proprietary",
+      "url": "https://sumukh-portfolio-seven.vercel.app/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sumukh-portfolio-seven.vercel.app",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "getPortfolio",
+        "summary": "Portfolio homepage",
+        "description": "Returns the full Sumukh Singh portfolio: capabilities, selected work, services, process, about, and contact.",
+        "responses": {
+          "200": {
+            "description": "HTML portfolio page",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Portfolio"]
+      }
+    },
+    "/creative-strategy.html": {
+      "get": {
+        "operationId": "getCreativeStrategy",
+        "summary": "Creative strategy case study",
+        "description": "In-depth creative strategy case study page.",
+        "responses": {
+          "200": {
+            "description": "HTML case study page",
+            "content": {
+              "text/html": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        },
+        "tags": ["Case Studies"]
+      }
+    },
+    "/slack-swiggy-hq.html": {
+      "get": {
+        "operationId": "getSlackSwiggyCase",
+        "summary": "Slack × Swiggy HQ brand partnership case",
+        "description": "Brand partnership creative direction case study.",
+        "responses": {
+          "200": {
+            "description": "HTML case study page",
+            "content": {
+              "text/html": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        },
+        "tags": ["Case Studies"]
+      }
+    },
+    "/llms.txt": {
+      "get": {
+        "operationId": "getLlmsTxt",
+        "summary": "LLMs.txt machine-readable index",
+        "description": "Standard llms.txt index of all portfolio resources for AI agents.",
+        "responses": {
+          "200": {
+            "description": "Plain text llms.txt",
+            "content": {
+              "text/plain": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        },
+        "tags": ["Developer Resources"]
+      }
+    },
+    "/.well-known/mcp": {
+      "get": {
+        "operationId": "getMcpManifest",
+        "summary": "Model Context Protocol manifest",
+        "description": "MCP manifest describing how AI agents can interact with this portfolio.",
+        "responses": {
+          "200": {
+            "description": "JSON MCP manifest",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        },
+        "tags": ["Developer Resources"]
+      }
+    }
+  },
+  "tags": [
+    { "name": "Portfolio", "description": "Main portfolio resources" },
+    { "name": "Case Studies", "description": "Individual case study pages" },
+    { "name": "Developer Resources", "description": "Machine-readable files for AI agents and developers" }
+  ]
+}

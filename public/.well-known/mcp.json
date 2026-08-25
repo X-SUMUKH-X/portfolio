@@ -1,0 +1,62 @@
+{
+  "mcpVersion": "2025-03-26",
+  "name": "Sumukh Singh Portfolio",
+  "description": "Sumukh Singh is a creative strategist and content marketer based in Delhi, India. This MCP manifest describes the public resource surface of his portfolio. AI agents can use the tools below to discover his work, services, and contact information.",
+  "vendor": "Sumukh Singh",
+  "homepage": "https://sumukh-portfolio-seven.vercel.app/",
+  "contact": "sumukh.workk@gmail.com",
+  "transport": "streamable-http",
+  "url": "https://sumukh-portfolio-seven.vercel.app/.well-known/mcp",
+  "resources": [
+    {
+      "uri": "https://sumukh-portfolio-seven.vercel.app/llms.txt",
+      "name": "LLMs.txt index",
+      "description": "Machine-readable index of all portfolio resources",
+      "mimeType": "text/plain"
+    },
+    {
+      "uri": "https://sumukh-portfolio-seven.vercel.app/llms-full.txt",
+      "name": "LLMs-full.txt extended index",
+      "description": "Extended portfolio index with full case study descriptions",
+      "mimeType": "text/plain"
+    },
+    {
+      "uri": "https://sumukh-portfolio-seven.vercel.app/openapi.json",
+      "name": "OpenAPI 3.1.0 spec",
+      "description": "OpenAPI description of the portfolio public resource surface",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "https://sumukh-portfolio-seven.vercel.app/sitemap.xml",
+      "name": "XML Sitemap",
+      "description": "Sitemap of all public portfolio pages",
+      "mimeType": "application/xml"
+    },
+    {
+      "uri": "https://sumukh-portfolio-seven.vercel.app/",
+      "name": "Portfolio homepage",
+      "description": "Full Sumukh Singh portfolio: capabilities, case studies, services, process, and contact",
+      "mimeType": "text/html"
+    }
+  ],
+  "tools": [
+    {
+      "name": "get_portfolio_overview",
+      "description": "Get an overview of Sumukh Singh's creative strategy portfolio, including skills, case studies, and services.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "get_contact_info",
+      "description": "Get contact information for Sumukh Singh to initiate a project or consultation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  ]
+}

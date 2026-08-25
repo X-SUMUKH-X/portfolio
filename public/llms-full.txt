@@ -1,0 +1,78 @@
+# Sumukh Singh Portfolio — llms-full.txt
+# Full extended version of llms.txt with complete case study descriptions.
+
+> Sumukh Singh is a creative strategist and content marketer based in Delhi, India. He builds campaigns, content systems, and short-form creative for startups, founders, and growing teams.
+
+## About
+
+Sumukh Singh works where data, creative, and attention meet. He moves between strategy, content, analytics and execution, staying close enough to the work to make the thing himself.
+
+"Creative with a spreadsheet. The spreadsheet tells me what's happening. The creative gives people a reason to care."
+
+Contact: sumukh.workk@gmail.com  
+GitHub: https://github.com/X-SUMUKH-X  
+Location: Delhi, India
+
+## Capabilities
+
+### Campaign Systems (strategy → output)
+End-to-end campaign thinking: positioning, messaging, content architecture, creative direction and execution.
+Tags: positioning, messaging, content systems, creative direction.
+Process: brief → idea → launch.
+
+### Short-Form Content (hook → payoff)
+Hooks, scripts, formats and content systems built for the speed of the feed.
+Tags: hooks, scripts, formats, content systems.
+
+## Selected Work (Case Studies)
+
+### 1. Fokus App — Short-Form Content System
+Category: short-form content
+Result: 2.1M views in 24 hours.
+Task: Build short-form content system from scratch. Hook-first scripts, format selection and distribution strategy for a productivity app targeting Gen Z.
+Role: content strategy, scripting, hook writing, format design.
+Move: Led with identity crisis, not features. Designed the hook around a shared pain point rather than the product.
+
+### 2. Swiggy Instamart Campaign
+Category: campaign systems
+Result: Viral reach, significant organic engagement.
+Task: Create a campaign that made Swiggy Instamart feel culturally relevant beyond grocery delivery.
+Role: campaign concepting, messaging, creative direction, execution.
+
+### 3. Slack × Swiggy HQ
+Category: brand partnership creative
+Task: Position Slack as the operational backbone of Swiggy's fast-paced internal culture.
+Role: creative direction, copy, brand partnership framing.
+
+### 4. Josh Talks AI — Editorial UX Redesign
+Category: website redesign / editorial UX
+Task: Redesign the Josh Talks AI landing page to feel authoritative and editorially credible.
+Role: UX design, editorial strategy, web development.
+
+### 5. Launchverse — Multi-Brand Product Launch
+Category: product launch strategy
+Task: Coordinate and execute a multi-brand product launch across social, content and distribution channels.
+Role: launch strategy, content systems, execution.
+
+### 6. Blinkit Metrics — Power BI Dashboard
+Category: data analytics / Power BI
+Result: ₹1.2M in sales data analyzed.
+Task: Turn raw Blinkit sales data into a dashboard that makes patterns easier to see and discuss.
+Role: data analysis, dashboard design, insight framing.
+Move: Structured the dashboard around decision-relevant metrics instead of exposing the dataset as a wall of numbers.
+
+## Broader Services
+
+01. Branding — visual identity, messaging, positioning frameworks.
+02. Website Development — fast, responsive sites and landing pages.
+03. Social Media — short-form content systems, hooks, scripts.
+04. Content Marketing — essays, case studies, newsletters, SEO content.
+05. Campaign Strategy — full-funnel campaign thinking and execution.
+06. Growth Consulting — analytics, experimentation, insight framing.
+
+## Developer Resources
+
+- [OpenAPI spec](https://sumukh-portfolio-seven.vercel.app/openapi.json): OpenAPI 3.1.0 spec.
+- [MCP manifest](https://sumukh-portfolio-seven.vercel.app/.well-known/mcp): Model Context Protocol manifest.
+- [Sitemap](https://sumukh-portfolio-seven.vercel.app/sitemap.xml): XML sitemap.
+- [llms.txt](https://sumukh-portfolio-seven.vercel.app/llms.txt): Short index version.

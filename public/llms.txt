@@ -1,0 +1,45 @@
+# Sumukh Singh Portfolio — llms.txt
+# https://llmstxt.org
+
+> Sumukh Singh is a creative strategist and content marketer based in Delhi, India. He builds campaigns, content systems, and short-form creative for startups, founders, and growing teams.
+
+## About
+
+Sumukh Singh works across creative strategy, campaign systems, viral short-form video, brand positioning, analytics, and website development. He is available for freelance and consulting engagements.
+
+Contact: sumukh.workk@gmail.com
+
+## Portfolio
+
+- [Homepage](https://sumukh-portfolio-seven.vercel.app/): Full portfolio — capabilities, selected work, services, process, and contact.
+- [Creative Strategy case study](https://sumukh-portfolio-seven.vercel.app/creative-strategy.html): In-depth creative strategy process and case.
+- [Slack × Swiggy HQ case study](https://sumukh-portfolio-seven.vercel.app/slack-swiggy-hq.html): Brand partnership creative direction.
+
+## Selected Work
+
+- **Swiggy Instamart campaign** — viral short-form content, 2.1M views in 24 hours.
+- **Blinkit Metrics Dashboard** — Power BI analytics dashboard, ₹1.2M in sales data analyzed.
+- **Fokus app** — short-form content system and hook writing.
+- **Josh Talks AI** — landing page redesign, editorial UX.
+- **Launchverse** — multi-brand product launch strategy and execution.
+- **Slack × Swiggy HQ** — brand partnership creative direction.
+
+## Services
+
+- Campaign strategy and systems
+- Branding and positioning
+- Short-form video and social media content
+- Website development (design + build)
+- Content marketing and SEO
+- Growth consulting and analytics
+
+## Developer Resources
+
+- [OpenAPI spec](https://sumukh-portfolio-seven.vercel.app/openapi.json): OpenAPI 3.1.0 description of the portfolio contact surface.
+- [MCP manifest](https://sumukh-portfolio-seven.vercel.app/.well-known/mcp): Model Context Protocol manifest for AI agent integration.
+- [Sitemap](https://sumukh-portfolio-seven.vercel.app/sitemap.xml): XML sitemap of all public pages.
+- [Robots.txt](https://sumukh-portfolio-seven.vercel.app/robots.txt): Crawl policy.
+
+## Optional
+
+- [llms-full.txt](https://sumukh-portfolio-seven.vercel.app/llms-full.txt): Extended version with full case study text.
