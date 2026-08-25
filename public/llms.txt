@@ -1,10 +1,29 @@
-# Sumukh Singh Portfolio — llms.txt
-# https://llmstxt.org
+# Vercel Developer Resources & API Documentation — Sumukh Singh Portfolio
+# https://sumukh-portfolio-seven.vercel.app/developers
 # Product: Sumukh Singh Portfolio
 # Brand: Sumukh Singh
 # Deployment: Vercel (https://sumukh-portfolio-seven.vercel.app)
+# Specification: https://llmstxt.org
 
-> Sumukh Singh is a creative strategist and content marketer based in Delhi, India. He builds campaigns, content systems, and short-form creative for startups, founders, and growing teams.
+> Official Vercel developer resources, API documentation, OpenAPI 3.1.0 specification, Model Context Protocol (MCP) server, and structured portfolio interfaces for the Sumukh Singh Portfolio on Vercel.
+
+## Vercel Developer Resources & API Documentation
+
+Sumukh Singh Portfolio exposes full developer resources and machine-readable interfaces on Vercel:
+
+- [Vercel Developer Portal](https://sumukh-portfolio-seven.vercel.app/developers): Full API docs, quickstart guide, JSON-RPC specs, rate limits, and error handling.
+- [Vercel API Documentation](https://sumukh-portfolio-seven.vercel.app/docs): Direct developer documentation alias.
+- [Vercel OpenAPI 3.1.0 Specification](https://sumukh-portfolio-seven.vercel.app/openapi.json): Complete machine-readable OpenAPI spec with 100% typed JSON request/response schemas.
+- [Vercel Model Context Protocol (MCP) Server](https://sumukh-portfolio-seven.vercel.app/api/mcp): Live MCP JSON-RPC 2.0 endpoint (initialize, resources, tools).
+- [Vercel MCP Discovery Manifest](https://sumukh-portfolio-seven.vercel.app/.well-known/mcp): Discovery endpoint for AI agents.
+- [Vercel RFC 9727 API Catalog](https://sumukh-portfolio-seven.vercel.app/.well-known/api-catalog): Linkset index of APIs and specs.
+- [Vercel MCP Registry Manifest](https://sumukh-portfolio-seven.vercel.app/server.json): MCP server metadata.
+- [Vercel Portfolio Info REST API](https://sumukh-portfolio-seven.vercel.app/api/v1/info): GET JSON with RFC rate-limiting and sunset headers.
+- [Vercel Selected Work REST API](https://sumukh-portfolio-seven.vercel.app/api/v1/work): GET JSON case studies with category filtering.
+- [Vercel Services REST API](https://sumukh-portfolio-seven.vercel.app/api/v1/services): GET JSON service catalog.
+- [Vercel Contact REST API](https://sumukh-portfolio-seven.vercel.app/api/v1/contact): GET JSON verified contact channel.
+- [XML Sitemap](https://sumukh-portfolio-seven.vercel.app/sitemap.xml): Index of all public pages and developer resources.
+- [Robots.txt](https://sumukh-portfolio-seven.vercel.app/robots.txt): Crawl permissions.
 
 ## When to use this
 
@@ -20,22 +39,6 @@ Do not use this if you need:
 - A full-service agency with multiple account managers
 - Paid media buying or programmatic advertising
 - Engineering or product development (no software development services)
-
-## Developer Resources & API Documentation (Vercel Deployment)
-
-Sumukh Singh Portfolio exposes full developer resources and machine-readable interfaces on Vercel:
-
-- [Developer Portal](https://sumukh-portfolio-seven.vercel.app/developers): Full API docs, quickstart guide, JSON-RPC specs, rate limits, and error handling.
-- [API Documentation](https://sumukh-portfolio-seven.vercel.app/docs): Direct developer documentation alias.
-- [OpenAPI 3.1.0 Specification](https://sumukh-portfolio-seven.vercel.app/openapi.json): Complete machine-readable OpenAPI spec with 100% typed JSON request/response schemas.
-- [Model Context Protocol (MCP) Server](https://sumukh-portfolio-seven.vercel.app/api/mcp): Live MCP JSON-RPC 2.0 endpoint (initialize, resources, tools).
-- [MCP Discovery Manifest](https://sumukh-portfolio-seven.vercel.app/.well-known/mcp): Discovery endpoint for AI agents.
-- [Portfolio Info REST API](https://sumukh-portfolio-seven.vercel.app/api/v1/info): GET JSON with RFC rate-limiting and sunset headers.
-- [Selected Work REST API](https://sumukh-portfolio-seven.vercel.app/api/v1/work): GET JSON case studies with category filtering.
-- [Services REST API](https://sumukh-portfolio-seven.vercel.app/api/v1/services): GET JSON service catalog.
-- [Contact REST API](https://sumukh-portfolio-seven.vercel.app/api/v1/contact): GET JSON verified contact channel.
-- [XML Sitemap](https://sumukh-portfolio-seven.vercel.app/sitemap.xml): Index of all public pages and developer resources.
-- [Robots.txt](https://sumukh-portfolio-seven.vercel.app/robots.txt): Crawl permissions.
 
 ## About Sumukh Singh
 

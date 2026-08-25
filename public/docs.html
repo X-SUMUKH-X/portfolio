@@ -3,15 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sumukh Singh Portfolio — Developer Resources, API Docs & MCP Server</title>
-<meta name="description" content="Sumukh Singh Portfolio developer portal. REST API endpoints (/api/v1/info, /api/v1/work, /api/v1/services, /api/v1/contact), MCP server (/api/mcp), OpenAPI 3.1.0 specification, and LLMs.txt for AI agents.">
-<meta name="keywords" content="Sumukh Singh, Sumukh Singh Portfolio, developer resources, API documentation, OpenAPI, MCP server, Model Context Protocol">
-<meta name="product" content="Sumukh Singh Portfolio">
+<title>Vercel Developer Resources &amp; API Documentation — Sumukh Singh Portfolio</title>
+<meta name="description" content="Official Vercel developer resources, REST API documentation, OpenAPI 3.1.0 specification, Model Context Protocol (MCP) server, and LLMs.txt for Sumukh Singh Portfolio.">
+<meta name="keywords" content="Vercel developer resources, Vercel API docs, Vercel OpenAPI, Vercel MCP server, Sumukh Singh, Sumukh Singh Portfolio, developer portal">
+<meta name="product" content="Sumukh Singh Portfolio on Vercel">
 <meta name="application-name" content="Sumukh Singh Portfolio">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://sumukh-portfolio-seven.vercel.app/developers">
 <link rel="alternate" type="application/json" href="/openapi.json" title="OpenAPI spec">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt">
+<link rel="alternate" type="application/linkset+json" href="/.well-known/api-catalog" title="RFC 9727 API Catalog">
 <style>
   body{margin:0;font-family:Inter,Arial,sans-serif;background:#f2f2ef;color:#111;line-height:1.55}
   .page{max-width:860px;margin:auto;padding:48px 24px}
@@ -19,6 +20,8 @@
   h2{font-size:22px;font-weight:700;letter-spacing:-.03em;margin:40px 0 10px;border-bottom:1px solid #ddd;padding-bottom:8px}
   h3{font-size:15px;font-weight:700;margin:20px 0 6px}
   p{font-size:15px;color:#444;margin:0 0 14px}
+  ul{color:#333;font-size:15px;line-height:1.7}
+  li{margin-bottom:6px}
   a{color:#111;font-weight:600;text-underline-offset:3px}
   code,pre{font-family:'JetBrains Mono',monospace;font-size:13px}
   pre{background:#fff;border:1px solid #ddd;border-radius:10px;padding:18px;overflow-x:auto;line-height:1.6;margin:10px 0 20px}
@@ -33,12 +36,23 @@
 </head>
 <body>
 <div class="page">
-  <div class="kicker">Sumukh Singh Portfolio — Developer Resources &amp; API</div>
-  <h1>developer portal.</h1>
-  <p>Programmatic access to the <strong>Sumukh Singh Portfolio</strong> for AI agents, developers, and integrations. The portfolio exposes structured REST API endpoints, a live Model Context Protocol (MCP) server, an OpenAPI 3.1 specification, and machine-readable llms.txt indexes.</p>
+  <div class="kicker">Sumukh Singh Portfolio on Vercel — Developer Resources &amp; API Documentation</div>
+  <h1>vercel developer resources.</h1>
+  <p>Official developer portal and programmatic access for the <strong>Sumukh Singh Portfolio</strong> on Vercel (<strong>sumukh-portfolio-seven.vercel.app</strong>). Exposes REST API endpoints, a live Model Context Protocol (MCP) server, an OpenAPI 3.1 specification, and machine-readable llms.txt indexes for AI agents and developers.</p>
+
+  <h2>Vercel Developer Resources Overview</h2>
+  <ul>
+    <li><strong>Developer Portal:</strong> <a href="https://sumukh-portfolio-seven.vercel.app/developers">https://sumukh-portfolio-seven.vercel.app/developers</a></li>
+    <li><strong>API Documentation:</strong> <a href="https://sumukh-portfolio-seven.vercel.app/docs">https://sumukh-portfolio-seven.vercel.app/docs</a></li>
+    <li><strong>OpenAPI 3.1.0 Specification:</strong> <a href="https://sumukh-portfolio-seven.vercel.app/openapi.json">https://sumukh-portfolio-seven.vercel.app/openapi.json</a></li>
+    <li><strong>Model Context Protocol (MCP) Server:</strong> <a href="https://sumukh-portfolio-seven.vercel.app/api/mcp">https://sumukh-portfolio-seven.vercel.app/api/mcp</a></li>
+    <li><strong>RFC 9727 API Catalog:</strong> <a href="https://sumukh-portfolio-seven.vercel.app/.well-known/api-catalog">https://sumukh-portfolio-seven.vercel.app/.well-known/api-catalog</a></li>
+    <li><strong>MCP Registry Manifest:</strong> <a href="https://sumukh-portfolio-seven.vercel.app/server.json">https://sumukh-portfolio-seven.vercel.app/server.json</a></li>
+    <li><strong>Authentication &amp; Webhooks Policy:</strong> All public read endpoints require no API key or auth token.</li>
+  </ul>
 
   <h2>Quick Start</h2>
-  <p>Retrieve full portfolio data via REST:</p>
+  <p>Retrieve full portfolio data via REST on Vercel:</p>
   <pre>curl https://sumukh-portfolio-seven.vercel.app/api/v1/info | jq .</pre>
 
   <p>Connect via MCP (Model Context Protocol):</p>
@@ -79,7 +93,7 @@
   <h2>Model Context Protocol (MCP) Server</h2>
 
   <div class="endpoint">
-    <span class="badge get">GET</span><span class="badge post">POST</span> <code>/api/mcp</code> · <code>/.well-known/mcp</code>
+    <span class="badge get">GET</span><span class="badge post">POST</span> <code>/api/mcp</code> · <code>/.well-known/mcp</code> · <code>/mcp</code>
     <h3>MCP Server (Protocol Version 2025-03-26)</h3>
     <p>Full JSON-RPC 2.0 MCP server. <strong>GET</strong> returns the manifest. <strong>POST</strong> processes protocol methods: <code>initialize</code>, <code>ping</code>, <code>resources/list</code>, <code>resources/read</code>, <code>tools/list</code>, <code>tools/call</code>.</p>
     <p>Available tools: <code>get_portfolio_overview</code>, <code>get_contact_info</code>, <code>get_selected_work</code>, <code>get_services</code></p>
@@ -100,6 +114,12 @@
     <span class="badge get">GET</span> <code>/openapi.json</code>
     <h3>OpenAPI 3.1.0 Specification</h3>
     <p>Machine-readable schema describing all REST and MCP operations with 100% typed response models and RFC 9457 error formats.</p>
+  </div>
+
+  <div class="endpoint">
+    <span class="badge get">GET</span> <code>/.well-known/api-catalog</code>
+    <h3>RFC 9727 API Catalog</h3>
+    <p>Standard RFC 9727 linkset advertising the OpenAPI spec, documentation, and status endpoints.</p>
   </div>
 
   <section id="errors">
@@ -130,7 +150,7 @@
 
   <section id="ratelimits">
     <h2>Rate Limiting</h2>
-    <p>A standard rate limit of 60 requests per minute per IP applies to all public API endpoints. Response headers provide real-time quota state:</p>
+    <p>A standard rate limit of 60 requests per minute per IP applies to all public API endpoints on Vercel. Response headers provide real-time quota state:</p>
     <pre>RateLimit-Limit: 60
 RateLimit-Remaining: 59
 RateLimit-Reset: 60
