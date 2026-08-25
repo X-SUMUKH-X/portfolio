@@ -3,7 +3,7 @@
   "info": {
     "title": "Sumukh Singh Portfolio API",
     "version": "1.0.0",
-    "description": "Public REST & MCP API for the Sumukh Singh Portfolio — Creative Strategist & Content Marketer, Delhi, India. Provides structured programmatic access to portfolio data, case studies, service offerings, and verified contact channels.",
+    "description": "Public REST & MCP API for the Sumukh Singh Portfolio — Creative Strategist & Content Marketer, Delhi, India. Provides structured programmatic access to portfolio data, case studies, service offerings, and verified contact channels on Vercel.",
     "contact": {
       "name": "Sumukh Singh",
       "email": "sumukh.workk@gmail.com",
@@ -125,7 +125,18 @@
         "summary": "Get service catalog and offerings",
         "description": "Retrieves the full list of creative strategy, content marketing, branding, and website services offered by Sumukh Singh.",
         "tags": ["Services"],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "serviceId",
+            "in": "query",
+            "required": false,
+            "description": "Optional filter for a specific service ID or key.",
+            "schema": {
+              "type": "string",
+              "enum": ["branding", "website-development", "social-media", "content-marketing", "campaign-strategy", "growth-consulting"]
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Service catalog retrieved successfully",
@@ -148,7 +159,18 @@
         "summary": "Get verified contact details and engagement terms",
         "description": "Retrieves verified direct contact email, location, availability status, and consultation terms.",
         "tags": ["Contact"],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "inquiryType",
+            "in": "query",
+            "required": false,
+            "description": "Optional inquiry type classification.",
+            "schema": {
+              "type": "string",
+              "enum": ["general", "campaign", "short-form", "consulting"]
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Contact information retrieved successfully",
@@ -171,7 +193,19 @@
         "summary": "Get MCP server discovery manifest",
         "description": "Returns the Model Context Protocol (MCP 2025-03-26) server manifest declaring capabilities, resources, and available tools.",
         "tags": ["MCP"],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "protocolVersion",
+            "in": "query",
+            "required": false,
+            "description": "Optional protocol version parameter.",
+            "schema": {
+              "type": "string",
+              "enum": ["2025-03-26"],
+              "default": "2025-03-26"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "MCP discovery manifest",
@@ -188,7 +222,6 @@
         "summary": "Execute MCP JSON-RPC 2.0 requests",
         "description": "Executes MCP protocol methods including initialize, ping, resources/list, resources/read, tools/list, and tools/call.",
         "tags": ["MCP"],
-        "parameters": [],
         "requestBody": {
           "required": true,
           "content": {

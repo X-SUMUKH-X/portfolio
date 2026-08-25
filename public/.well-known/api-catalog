@@ -1,0 +1,40 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://sumukh-portfolio-seven.vercel.app/api/v1",
+      "service-desc": [
+        {
+          "href": "https://sumukh-portfolio-seven.vercel.app/openapi.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://sumukh-portfolio-seven.vercel.app/developers",
+          "type": "text/html"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://sumukh-portfolio-seven.vercel.app/api/v1/info",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://sumukh-portfolio-seven.vercel.app/api/mcp",
+      "service-desc": [
+        {
+          "href": "https://sumukh-portfolio-seven.vercel.app/.well-known/mcp",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://sumukh-portfolio-seven.vercel.app/developers",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}

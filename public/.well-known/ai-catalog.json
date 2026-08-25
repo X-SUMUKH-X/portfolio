@@ -1,0 +1,12 @@
+{
+  "catalog": "1.0",
+  "name": "Sumukh Singh Portfolio",
+  "description": "Creative Strategist & Content Marketer, Delhi, India — AI interfaces and developer catalog on Vercel.",
+  "links": {
+    "mcp": "https://sumukh-portfolio-seven.vercel.app/api/mcp",
+    "openapi": "https://sumukh-portfolio-seven.vercel.app/openapi.json",
+    "llms": "https://sumukh-portfolio-seven.vercel.app/llms.txt",
+    "docs": "https://sumukh-portfolio-seven.vercel.app/developers",
+    "rest": "https://sumukh-portfolio-seven.vercel.app/api/v1/info"
+  }
+}

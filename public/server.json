@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/mcp-server.json",
+  "name": "sumukh-portfolio",
+  "version": "1.0.0",
+  "title": "Sumukh Singh Portfolio MCP Server",
+  "description": "Model Context Protocol server for Sumukh Singh Portfolio — Creative Strategist & Content Marketer, Delhi, India. Exposes tools to retrieve structured portfolio data, selected case studies, services, and verified contact channels.",
+  "author": {
+    "name": "Sumukh Singh",
+    "email": "sumukh.workk@gmail.com",
+    "url": "https://sumukh-portfolio-seven.vercel.app"
+  },
+  "homepage": "https://sumukh-portfolio-seven.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/X-SUMUKH-X/portfolio"
+  },
+  "license": "Proprietary",
+  "transport": {
+    "type": "streamable-http",
+    "url": "https://sumukh-portfolio-seven.vercel.app/api/mcp"
+  },
+  "capabilities": {
+    "resources": true,
+    "tools": true
+  }
+}

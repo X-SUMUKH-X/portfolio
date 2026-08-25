@@ -129,6 +129,32 @@
       ]
     },
     {
+      "source": "/.well-known/api-catalog",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/linkset+json; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/server.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
       "source": "/openapi.json",
       "headers": [
         {
@@ -187,6 +213,10 @@
       "destination": "/api/mcp"
     },
     {
+      "source": "/mcp",
+      "destination": "/api/mcp"
+    },
+    {
       "source": "/api/v1/info",
       "destination": "/api/info"
     },
@@ -208,10 +238,6 @@
     },
     {
       "source": "/docs",
-      "destination": "/developers"
-    },
-    {
-      "source": "/api",
       "destination": "/developers"
     },
     {

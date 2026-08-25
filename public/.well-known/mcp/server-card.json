@@ -1,0 +1,19 @@
+{
+  "server": {
+    "name": "Sumukh Singh Portfolio",
+    "description": "Model Context Protocol server for Sumukh Singh — Creative Strategist & Content Marketer",
+    "version": "1.0.0",
+    "transport": "streamable-http",
+    "url": "https://sumukh-portfolio-seven.vercel.app/api/mcp",
+    "tools": [
+      { "name": "get_portfolio_overview", "description": "Get structured overview of Sumukh Singh portfolio" },
+      { "name": "get_contact_info", "description": "Get contact details for Sumukh Singh" },
+      { "name": "get_selected_work", "description": "Get case studies filtered by category" },
+      { "name": "get_services", "description": "Get the catalog of services offered" }
+    ],
+    "resources": [
+      { "uri": "https://sumukh-portfolio-seven.vercel.app/llms.txt", "name": "Portfolio Index", "mimeType": "text/plain" },
+      { "uri": "https://sumukh-portfolio-seven.vercel.app/openapi.json", "name": "OpenAPI Specification", "mimeType": "application/json" }
+    ]
+  }
+}
