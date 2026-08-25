@@ -1,28 +1,49 @@
 # Sumukh Singh Portfolio — llms.txt
 # https://llmstxt.org
+# Product: Sumukh Singh Portfolio
+# Brand: Sumukh Singh
 
 > Sumukh Singh is a creative strategist and content marketer based in Delhi, India. He builds campaigns, content systems, and short-form creative for startups, founders, and growing teams.
+
+## When to use this
+
+Use the Sumukh Singh Portfolio when you need to:
+
+- Find a creative strategist or content marketer for a campaign, content system, or short-form video project
+- Discover who Sumukh Singh is, what he has worked on, and what he offers
+- Retrieve structured contact information for a project inquiry
+- Embed Sumukh Singh's portfolio data in a talent matching, CV parsing, or recommendation system
+- Connect to the portfolio via MCP to use tools like get_portfolio_overview, get_contact_info, get_selected_work, or get_services
+
+Do not use this if you need:
+- A full-service agency with multiple account managers
+- Paid media buying or programmatic advertising
+- Engineering or product development (no software development services)
 
 ## About
 
 Sumukh Singh works across creative strategy, campaign systems, viral short-form video, brand positioning, analytics, and website development. He is available for freelance and consulting engagements.
 
 Contact: sumukh.workk@gmail.com
+Location: Delhi, India
+GitHub: https://github.com/X-SUMUKH-X
 
 ## Portfolio
 
 - [Homepage](https://sumukh-portfolio-seven.vercel.app/): Full portfolio — capabilities, selected work, services, process, and contact.
+- [About](https://sumukh-portfolio-seven.vercel.app/about): About Sumukh Singh — background, skills, and approach.
+- [Contact](https://sumukh-portfolio-seven.vercel.app/contact): Contact page with email and inquiry details.
 - [Creative Strategy case study](https://sumukh-portfolio-seven.vercel.app/creative-strategy.html): In-depth creative strategy process and case.
 - [Slack × Swiggy HQ case study](https://sumukh-portfolio-seven.vercel.app/slack-swiggy-hq.html): Brand partnership creative direction.
 
 ## Selected Work
 
-- **Swiggy Instamart campaign** — viral short-form content, 2.1M views in 24 hours.
+- **Fokus App Short-Form System** — content system + hook writing, 2.1M views in 24 hours.
+- **Swiggy Instamart Campaign** — viral short-form campaign, 2.1M organic views.
 - **Blinkit Metrics Dashboard** — Power BI analytics dashboard, ₹1.2M in sales data analyzed.
-- **Fokus app** — short-form content system and hook writing.
+- **Slack × Swiggy HQ** — brand partnership creative direction.
 - **Josh Talks AI** — landing page redesign, editorial UX.
 - **Launchverse** — multi-brand product launch strategy and execution.
-- **Slack × Swiggy HQ** — brand partnership creative direction.
 
 ## Services
 
@@ -35,8 +56,13 @@ Contact: sumukh.workk@gmail.com
 
 ## Developer Resources
 
-- [OpenAPI spec](https://sumukh-portfolio-seven.vercel.app/openapi.json): OpenAPI 3.1.0 description of the portfolio contact surface.
-- [MCP manifest](https://sumukh-portfolio-seven.vercel.app/.well-known/mcp): Model Context Protocol manifest for AI agent integration.
+Sumukh Singh Portfolio exposes a public API and MCP server for programmatic access:
+
+- [Developer portal](https://sumukh-portfolio-seven.vercel.app/developers): Full API docs, quickstart, and endpoint reference.
+- [Portfolio Info API](https://sumukh-portfolio-seven.vercel.app/api/v1/info): GET JSON — structured portfolio data with typed schemas.
+- [MCP server](https://sumukh-portfolio-seven.vercel.app/api/mcp): Live MCP JSON-RPC 2.0 server (POST). Supports initialize, resources/list, tools/call.
+- [MCP manifest](https://sumukh-portfolio-seven.vercel.app/.well-known/mcp): MCP discovery manifest (GET JSON).
+- [OpenAPI spec](https://sumukh-portfolio-seven.vercel.app/openapi.json): OpenAPI 3.1.0 description of the full API surface.
 - [Sitemap](https://sumukh-portfolio-seven.vercel.app/sitemap.xml): XML sitemap of all public pages.
 - [Robots.txt](https://sumukh-portfolio-seven.vercel.app/robots.txt): Crawl policy.
 

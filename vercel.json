@@ -34,6 +34,32 @@
       ]
     },
     {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Vary",
+          "value": "Accept, Accept-Encoding"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Accept, MCP-Protocol-Version"
+        }
+      ]
+    },
+    {
       "source": "/.well-known/mcp",
       "headers": [
         {
@@ -46,7 +72,11 @@
         },
         {
           "key": "Access-Control-Allow-Methods",
-          "value": "GET, OPTIONS"
+          "value": "GET, POST, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Accept, MCP-Protocol-Version"
         }
       ]
     },
@@ -73,6 +103,10 @@
         {
           "key": "Access-Control-Allow-Origin",
           "value": "*"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept, Accept-Encoding"
         }
       ]
     },
@@ -102,7 +136,7 @@
   "rewrites": [
     {
       "source": "/.well-known/mcp",
-      "destination": "/.well-known/mcp.json"
+      "destination": "/api/mcp"
     }
   ],
   "redirects": [],

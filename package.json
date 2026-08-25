@@ -1,6 +1,7 @@
 {
   "name": "sumukh-singh-portfolio",
   "version": "1.0.0",
+  "type": "module",
   "description": "Portfolio of Sumukh Singh. Content-led marketer and creative strategist working at the intersection of analytics, technology, and attention.",
   "main": "index.html",
   "scripts": {

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Developer Resources — Sumukh Singh Portfolio API</title>
+<meta name="description" content="Developer portal for the Sumukh Singh Portfolio. MCP server, OpenAPI spec, portfolio info API, and llms.txt index for AI agents and developers.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://sumukh-portfolio-seven.vercel.app/developers">
+<link rel="alternate" type="application/json" href="/openapi.json" title="OpenAPI spec">
+<style>
+  body{margin:0;font-family:Inter,Arial,sans-serif;background:#f2f2ef;color:#111;line-height:1.55}
+  .page{max-width:860px;margin:auto;padding:48px 24px}
+  h1{font-size:clamp(36px,7vw,72px);font-weight:800;letter-spacing:-.06em;margin:0 0 8px}
+  h2{font-size:22px;font-weight:700;letter-spacing:-.03em;margin:40px 0 10px;border-bottom:1px solid #ddd;padding-bottom:8px}
+  h3{font-size:15px;font-weight:700;margin:20px 0 6px}
+  p{font-size:15px;color:#444;margin:0 0 14px}
+  a{color:#111;font-weight:600;text-underline-offset:3px}
+  code,pre{font-family:'JetBrains Mono',monospace;font-size:13px}
+  pre{background:#fff;border:1px solid #ddd;border-radius:10px;padding:18px;overflow-x:auto;line-height:1.6;margin:10px 0 20px}
+  .badge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:999px;border:1px solid #ddd;color:#555;margin-right:6px;vertical-align:middle}
+  .badge.get{background:#e8f5e9;border-color:#a5d6a7;color:#2e7d32}
+  .badge.post{background:#e3f2fd;border-color:#90caf9;color:#1565c0}
+  .endpoint{background:#fff;border:1px solid #ddd;border-radius:12px;padding:18px 20px;margin-bottom:14px}
+  .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:20px}
+  footer{margin-top:64px;padding-top:20px;border-top:1px solid #ddd;font-size:13px;color:#888}
+  footer a{color:#555}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="kicker">Sumukh Singh Portfolio — Developer Resources</div>
+  <h1>developer portal.</h1>
+  <p>Programmatic access to the Sumukh Singh Portfolio for AI agents, developers, and integrations. The portfolio exposes a JSON API, a live MCP server, an OpenAPI 3.1 spec, and machine-readable llms.txt indexes.</p>
+
+  <h2>Quick Start</h2>
+  <p>Get portfolio data in seconds:</p>
+  <pre>curl https://sumukh-portfolio-seven.vercel.app/api/v1/info | jq .</pre>
+
+  <p>Connect via MCP (Model Context Protocol):</p>
+  <pre>curl -X POST https://sumukh-portfolio-seven.vercel.app/api/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"my-agent","version":"1.0"}}}'</pre>
+
+  <h2>API Endpoints</h2>
+
+  <div class="endpoint">
+    <span class="badge get">GET</span> <code>/api/v1/info</code>
+    <h3>Portfolio Info</h3>
+    <p>Returns structured JSON with person details, skills, selected work, services, and contact info. Supports <code>?format=</code> query: <code>full</code> (default), <code>summary</code>, <code>contact</code>, <code>work</code>, <code>services</code>.</p>
+    <pre>curl "https://sumukh-portfolio-seven.vercel.app/api/v1/info?format=contact"</pre>
+    <p>Response includes <code>RateLimit-*</code> headers (60 req/min), <code>X-API-Version</code>, and <code>Vary: Accept, Accept-Encoding</code>.</p>
+  </div>
+
+  <div class="endpoint">
+    <span class="badge get">GET</span><span class="badge post">POST</span> <code>/api/mcp</code>
+    <h3>MCP Server (Model Context Protocol 2025-03-26)</h3>
+    <p>Full JSON-RPC 2.0 MCP server. <strong>GET</strong> returns the manifest. <strong>POST</strong> accepts JSON-RPC messages.</p>
+    <p>Supported methods: <code>initialize</code>, <code>ping</code>, <code>resources/list</code>, <code>resources/read</code>, <code>tools/list</code>, <code>tools/call</code></p>
+    <p>Available tools: <code>get_portfolio_overview</code>, <code>get_contact_info</code>, <code>get_selected_work</code>, <code>get_services</code></p>
+    <pre>curl -X POST https://sumukh-portfolio-seven.vercel.app/api/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_portfolio_overview","arguments":{}}}'</pre>
+  </div>
+
+  <div class="endpoint">
+    <span class="badge get">GET</span> <code>/.well-known/mcp</code>
+    <h3>MCP Discovery Manifest</h3>
+    <p>MCP discovery endpoint per the <code>/.well-known/</code> convention. Returns a JSON manifest pointing to the live MCP server.</p>
+  </div>
+
+  <h2>Machine-Readable Files</h2>
+
+  <div class="endpoint">
+    <span class="badge get">GET</span> <code>/llms.txt</code> · <code>/llms-full.txt</code>
+    <h3>LLMs.txt Index</h3>
+    <p><a href="https://llmstxt.org">llmstxt.org</a> standard index. <code>/llms.txt</code> is the concise version; <code>/llms-full.txt</code> includes full case study descriptions. The homepage also serves <code>text/markdown</code> when requested with <code>Accept: text/markdown</code>.</p>
+    <pre>curl -H "Accept: text/markdown" https://sumukh-portfolio-seven.vercel.app/</pre>
+  </div>
+
+  <div class="endpoint">
+    <span class="badge get">GET</span> <code>/openapi.json</code>
+    <h3>OpenAPI 3.1.0 Specification</h3>
+    <p>Full OpenAPI spec describing all API endpoints with typed request/response schemas and RFC 9457 error models.</p>
+    <pre>curl https://sumukh-portfolio-seven.vercel.app/openapi.json | jq .info</pre>
+  </div>
+
+  <h2>Error Handling</h2>
+  <p>All API errors return <a href="https://www.rfc-editor.org/rfc/rfc9457">RFC 9457</a> <code>application/problem+json</code>:</p>
+  <pre>{
+  "type": "https://sumukh-portfolio-seven.vercel.app/developers#errors",
+  "title": "Bad Request",
+  "status": 400,
+  "detail": "Description of what went wrong."
+}</pre>
+  <p>MCP errors follow JSON-RPC 2.0 error codes: <code>-32700</code> parse, <code>-32600</code> invalid request, <code>-32601</code> method not found, <code>-32602</code> invalid params.</p>
+
+  <h2>Versioning & Deprecation</h2>
+  <p>The REST API is versioned at <code>/api/v1/</code>. Responses include an <code>X-API-Version: 1</code> header and a <code>Sunset</code> header declaring the minimum supported-until date. Breaking changes will be published at a new version path with at least 6 months notice.</p>
+
+  <h2>Rate Limits</h2>
+  <p>60 requests per minute per IP. Rate-limit state is returned on every API response:</p>
+  <pre>RateLimit-Limit: 60
+RateLimit-Remaining: 59
+RateLimit-Reset: 1724569260
+RateLimit-Policy: 60;w=60</pre>
+  <p>On 429, a <code>Retry-After</code> header will indicate seconds to wait.</p>
+
+  <h2>When to Use This</h2>
+  <p>Use the Sumukh Singh Portfolio API when you need to:</p>
+  <ul>
+    <li>Discover Sumukh's skills, work, and services programmatically</li>
+    <li>Retrieve contact information for a project inquiry</li>
+    <li>Embed portfolio data in a CV parser, talent matching system, or AI assistant</li>
+    <li>Integrate with an MCP-compatible agent (Claude, ChatGPT plugins, etc.)</li>
+  </ul>
+
+  <footer>
+    <a href="/">← Portfolio</a> ·
+    <a href="/openapi.json">OpenAPI spec</a> ·
+    <a href="/llms.txt">llms.txt</a> ·
+    <a href="/sitemap.xml">Sitemap</a> ·
+    <a href="mailto:sumukh.workk@gmail.com">sumukh.workk@gmail.com</a>
+  </footer>
+</div>
+</body>
+</html>
